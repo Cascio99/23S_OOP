@@ -1,0 +1,38 @@
+##########수정사항###########
+0. 주석 오타 몇 개 수정함(Enemy.java left() 위에 "left(), up()만 필요함", BackGroundEnemyService 왼쪽 벽 충돌 시 "enemyService" 쓰레드 종료", 
+
+1. GateFrame line130~137(엔터/I 눌린 경우)
+switch
+case
+==> break; 빠져있음
+
+sol) break 추가함
+
+2. Player.java에서 8~16번째 줄 없어도 될 듯함(HP 변수 안 씀)
+
+3. Player.java에서 move 변수 없애도 됨
+
+4. GateFrame.java에서 KeyReleased()에서 KeyEvent.VK_UP인 경우 없애도 됨
+
+5. GateFrame.java에서 initThread() 속 gate 생성할 때 `Gate gate = new Gate(player)`에서 `gate = new Gate(player)`로 수정함
+
+6(버그). gate 부수고 다음 gate 나오기 전에 다시 스페이스 바 눌러서 부수는 동작 실행하면 "gate_Hp0.png 이미지 나오고 사라지는 모션 반복되는 버그" 있어서 GateFrame.java에 case KeyEvent.VK_SPACE:인 경우  `gate.BeingAttacked();` 전에 `if(gate.gateHp() > 0)` 추가함
+
+7. Enemy 클래스에서 initSetting() 속 setIcon() 없애고 left() 속 Random 통해서 쫄병/족장 정하는 코드로 대체
+
+8. Gate.java에서 hit 변수 없앰
+
+9. Gate.BeingAttacked()에서 else{ ImageIcon destory = ... setIcon()}부분 없애고 다음 if(this.hp <= 0)일 때 변수면 destory로 교체함
+
+
+==============================================
+
+1!!!!!!!!!! 그림 변경 시점: 이벤트 루프의 모든 task가 완료되고 나서 repaint된다.
+2!!!!!!!!!! 상하좌우 이동 동작에서 쓰레드가 메인쓰레드만 있으면 두 개의 키가 들어오면 이벤트루프 하나씩 실행돼서 동시작업 불가능 --> 따라서 Player.java에서 left() 안에도 쓰레드 필요함.
+
+※player&enemy의 up, left, up, down, 동작 원리
+1. player& enemy 클래스는 Movable(up(), left(), ... ) 구현한 것
+2. 이벤트 루프[큐]를 관리하기 위한 이벤트 리스너 addKeyListener()가 main에 있다. 이 이벤트 리스너에 두 가지 이벤트 핸들러[left()의 경우 0.02초가 걸리는(sleep) 스택](키가 눌릴 때의 이벤트 핸들러 keyPressed()와 키를 뗄 때 이벤트 핸들러 keyReleased())를 등록해줬다.
+3. 예를 들어 왼쪽 키가 눌렸을 경우 Player 클래스의 left() 메서드가 호출된다.
+4. left()와 right()의 원리는 비슷하다. 쓰레드를 생성(new Thread())하고 시작(.start())하는 것이다. 이 쓰레드 안의 Runnable task를 람다식으로 구현한 것이다.
+5. left()와 right() Runnable task 구현시 주의점: 좌/우 이동하면서 점프(up()) 눌리더라도 좌/우 이동하면서 가능하도록 만드려면 쓰레드가 하나가 아닌, while(left / right) { }로 구현해서 up 키가 눌려도 left나 right의 while(){}를 계속 실행되도록 만들어야 한다.

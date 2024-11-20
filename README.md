@@ -1,11 +1,8 @@
 # test
 
-2023_Spring Object_Oriented_Programming
-Language: JAVA
+- 2023_Spring Object_Oriented_Programming
+- Language: JAVA
 
-Team name: JVNU
+- Team name: JVNU
 
-Project name: Gate Defense
-
-
-### -- github token?
+- Project name: Gate Defense
