@@ -11,7 +11,7 @@
 
 # Mar_22_2025: Change the repo from private to public
 
-- Team members: 남기정, 이성주
+- Team members: [염선욱](https://github.com/Cascio99), [남기정](https://github.com/LuckyPlace), 이성주
 
 # How to play
 
