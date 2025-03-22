@@ -18,11 +18,14 @@
 1. Run GateFrame.java
 
 2. Press Enter
-<br>
-    `→` Go right
-    `←` Go left
-    `↑` Jump
-    `Spacebar` Attack
-    `i` Insert coin
+# Control
+
+|key | Meaning |
+| --- | ---|
+| → | Move right|
+| ← | Move left |
+| ← | Jump |
+| Spacebar | Attack |
+| i | Insert coin |
 
 ### reference: [Java-Swing-BubbleGame](https://github.com/codingspecialist/Java-Swing-BubbleGame)
