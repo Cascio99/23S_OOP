@@ -1,2 +1,0 @@
-backgroundMapservice 이미지 활용 --> 벽 충돌 감지
-

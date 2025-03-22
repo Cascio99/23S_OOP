@@ -1,3 +1,0 @@
-library 설정
-1. lombok 설치
-2. help > eclipse marketplace에서 windows builder 설치
